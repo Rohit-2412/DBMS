@@ -1,0 +1,166 @@
+// 8 august
+// SQL is not case sensitive
+CREATE TABLE table_name
+(
+col_name1 data_type(size) constraint_name,
+col_name2 data_type(size) constraint_name,
+col_name3 data_type(size) constraint_name,
+...
+);
+
+// DDL = Data Definition Language
+// command to create table
+
+CREATE TABLE student_table(
+Regno number(12),
+name varchar(20),
+section varchar(10),
+address varchar(25),
+cgpa number(4,2),
+rollnumber number(4)
+);
+
+int, number, char, varchar, varchar2 {constraints} = optional
+desc table_name; == for describing the table
+Example:
+desc student_table;
+// select and run one particular query at a time
+
+// DML = Data Manipulation Language
+// query to insert data
+
+insert into student_table values(100,'rohit','IT','delhi',8,4);
+insert into student_table values(101,'student 2','IT','uttar pradesh',8,4);
+
+// query to show all data
+SELECT * from student_table;
+
+// CODE
+CREATE TABLE student_table(
+Regno number(12),
+Name varchar(20),
+Section varchar(10),
+Address varchar(25),
+CGPA number(4,2),
+Roll_number number(4)
+);
+
+desc student_table;
+
+insert into student_table values(100,'rohit','IT','delhi',8,4);
+insert into student_table values(101,'amit','IT','uttar pradesh',8,4);
+
+SELECT * from student_table;
+
+// 11 AUGUST
+CREATE TABLE Person(
+P_id number(5) PRIMARY KEY,
+first_name varchar(20) UNIQUE NOT NULL,
+last_name varchar(20) NOT NULL,
+address varchar(25) NOT NULL,
+age number(2) NOT NULL
+);
+
+// DML
+insert into Person values(10,'ram','sharma','punjab',20);
+insert into Person values(11,'ramesh','sharma','punjab',22);
+insert into Person values(12,'mahesh','singh','ludhiana',21);
+insert into Person values(13,'shyam','malik','orissa',30);
+insert into Person values(14,'amit','verma','bihar',50);
+insert into Person values(15,'amitabh','pandey','punjab',25);
+insert into Person values(16,'sumit','sharma','punjab',50);
+
+// DML Command: Delete
+Delete from Person where P_id = 6;
+Delete from Person where P_id = 11;
+
+// DDL Command: DROP
+
+DROP TABLE table_name; {syntax}
+DROP TABLE Person;
+
+// EMPLOYEE TABLE 7 cols
+
+CREATE TABLE employee_table(
+emp_no number(12) PRIMARY KEY,
+Name varchar(25) NOT NULL,
+department varchar(25) NOT NULL,
+specialization varchar(50) NOT NULL,
+Address varchar(25),
+Salary number(10) NOT NULL,
+dob varchar(15) NOT NULL,
+experience number(5)
+);
+
+insert into employee_table values(10,'ram','CSE','artificial intelligence','punjab',10000,'1/8/2008',10);
+insert into employee_table values(11,'ramesh','CSE','artificial intelligence','punjab',1800,'1/8/2008',15);
+insert into employee_table values(12,'mohan','mec','isometric design','punjab',14000,'1/8/2008',5);
+insert into employee_table values(13,'pawan','ece','vlsi engineer','punjab',9000,'1/8/1988',2);
+insert into employee_table values(14,'param','phy','laser engineer','punjab',9000,'1/8/1985',1);
+insert into employee_table values(15,'sohaib','che','scientist','punjab',1100,'1/8/1258',20);
+insert into employee_table values(16,'malik','bio','zoologist','web developer',15000,'1/8/1995',13);
+insert into employee_table values(17,'shyam','int','networking','punjab',12000,'1/8/1485',20);
+
+Select * from employee_table;
+delete from employee_table where emp_no = 10;
+
+// FOREIGN KEY Constraint
+
+// Person Table
+CREATE TABLE Person(
+P_id number(5) PRIMARY KEY,
+name varchar(20) UNIQUE NOT NULL,
+address varchar(25) NOT NULL,
+age number(2) NOT NULL
+);
+
+insert into Person values(1,'ram','punjab',20);
+insert into Person values(2,'ramesh','punjab',22);
+insert into Person values(3,'mahesh','ludhiana',21);
+
+select * from Person;
+
+// Order table
+CREATE TABLE Order1(
+O_id int PRIMARY KEY,
+O_no int NOT NULL,
+P_id int,
+FOREIGN KEY (P_id) REFERENCES Person(P_id)
+);
+FOREIGN KEY col_name {in Child table} REFERENCES table_name(in Parent Table)
+FOREIGN KEY (P_id) REFERENCES Person(P_id)
+
+// Query
+insert into Order1 values(100,10,1);
+insert into Order1 values(101,11,2);
+insert into Order1 values(102,12,2);
+insert into Order1 values(103,13,3);
+
+insert into Order1 values((104,14,3),
+(105,15,3),
+(106,16,3));
+
+select * from Order1;
+
+Base table = Parent table
+Reference table = child table
+
+Deletion is not allowed in Base table
+Insertion of values which are not present in Base table is not allowed
+
+// Check constraint
+CREATE TABLE Course(
+course_id int PRIMARY KEY,
+course_name varchar(30) NOT NULL,
+course_duration number(5) Check (course_duration > 2),
+course_teacher varchar(20) NOT NULL
+);
+
+insert into Course values(1,'CSE',2,'abc');
+insert into Course values(2,'CSE',5,'xyz');
+insert into Course values(3,'CSE',8,'def');
+insert into Course values(4,'CSE',10,'pqr');
+
+select * from Course;
+select course_name from Course;
+select course_name,course_duration from Course;
