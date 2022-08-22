@@ -164,3 +164,39 @@ insert into Course values(4,'CSE',10,'pqr');
 select * from Course;
 select course_name from Course;
 select course_name,course_duration from Course;
+
+// ALTER COMMAND (DDL)
+
+CREATE TABLE person123(
+    Pid int PRIMARY KEY,
+    pname varchar(12) not null,
+    age number(3) check(age>18)
+);
+
+insert into person123 values(1,'ram',20);
+insert into person123 values(2,'shyam',25);
+insert into person123 values(3,'mohan',19);
+
+select * from person123;
+
+ALTER TABLE person123 add Subject varchar(25) not null;
+ALTER TABLE person123 DROP pname;
+ALTER TABLE person123 MODIFY Subject char(10);
+// we can insert NULL multiple times
+
+ALTER TABLE person123 DROP PRIMARY KEY;
+
+ALTER TABLE person123 ADD PRIMARY KEY(Pid);
+
+ALTER TABLE person123 RENAME COLUMN Subject TO Sub;
+
+RENAME person123 to personNEW;
+Output:: (Statement processed)
+
+// TRUNCATE 
+TRUNCATE TABLE person123; (to delete all the data/values)
+(scheme and structure is preserved)
+
+// WHERE CLAUSE
+SELECT * FROM personNEW WHERE PID = 2;
+select * from Person WHERE name = 'ram';
