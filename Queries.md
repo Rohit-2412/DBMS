@@ -123,7 +123,7 @@ ALTER TABLE table_name ADD PRIMARY KEY(col_name);
 -   ## To modify the pre-existing CONSTRAINTS
 
 ```
-ALTER TABLE table_name drop PRIMARY KEY;
+ALTER TABLE table_name DROP PRIMARY KEY;
 ```
 
 -   ## To RENAME a column
@@ -152,3 +152,31 @@ TRUNCATE TABLE table_name;
 > > DROP deletes the whole table including the SCHEMA
 
 ## UPDATE {DML = Data Definition Language}
+
+## To perfrom Arithmetic Operations on Table
+
+```
+SELECT [f(col_name, arithmetic_operation)] from table_name;
+```
+
+## CONCATENATION (to display value as a string in output)
+
+> || { Concatenation Operator }
+
+```
+SELECT col_name || 'string' || col_name from table_name WHERE condition1 OR condition2;
+SELECT col_name || col_name from table_name WHERE condition1 AND condition2;
+```
+
+## DISTINCT (to get only UNIQUE values)
+
+```
+SELECT DISTINCT col_name from table_name;
+```
+
+## AS CLAUSE ()
+
+```
+SELECT col_name AS "{string1 string2}" FROM table_name;
+SELECT col_name AS {string} FROM table_name; // if SINGLE WORD is there "" can be ommitted
+```

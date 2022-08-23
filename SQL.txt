@@ -200,3 +200,44 @@ TRUNCATE TABLE person123; (to delete all the data/values)
 // WHERE CLAUSE
 SELECT * FROM personNEW WHERE PID = 2;
 select * from Person WHERE name = 'ram';
+
+// EMPLOYEE TABLE
+CREATE TABLE employee(
+eid int PRIMARY KEY,
+name varchar(20) NOT NULL,
+salary int ,
+department varchar(30)
+);
+
+INSERT INTO employee values (1,'ram',100000,'cse');
+INSERT INTO employee values (2,'shyam',14000,'mec');
+INSERT INTO employee values (3,'mohan',15000,'ece');
+INSERT INTO employee values (4,'abc',12000,'che');
+INSERT INTO employee values (5,'xyz',8000,'phy');
+INSERT INTO employee values (6,'anuj',100000,'cse');
+INSERT INTO employee values (7,'anuj',100000,'cse');
+INSERT INTO employee values (8,'anuj',100000,'cse');
+INSERT INTO employee values (9,'anuj',100000,'cse');
+INSERT INTO employee values (10,'anuj',100000,'cse');
+
+// to perform operation on table
+select salary*2 from employee;
+select (salary+200)*2 from employee;
+select salary / 2 from employee;
+select salary/2 + 100 from employee;
+select salary * 2 - 1000 from employee;
+-> any operation on NULL will result in NULL;
+
+// concatenation
+SELECT col_name || 'string' || col_name AS OUTPUT from employee;
+
+>> Increase salary by 500 and multiply by 3 for employee working in CSE department
+select (salary+500)*3 from employee where department = 'cse' AND name='ram';
+select (salary+500)*3 from employee where department = 'cse' OR name='ram';
+
+SELECT distinct departmetn from employee;
+
+// AS command
+SELECT eid, name, department as "Details" from employee;
+SELECT eid, name, salary/1000 as "Details" from employee;
+SELECT eid, name as "Details" from employee;
