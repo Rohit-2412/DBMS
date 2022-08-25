@@ -241,3 +241,30 @@ SELECT distinct departmetn from employee;
 SELECT eid, name, department as "Details" from employee;
 SELECT eid, name, salary/1000 as "Details" from employee;
 SELECT eid, name as "Details" from employee;
+
+UPDATE employee set salary = 100 where eid = 1;
+
+select * from employee where salary <> 100000;
+select * from employee where salary > 10000;
+select * from employee where salary > 10000;
+select * from employee where salary BETWEEN 10000 AND 10000;
+select * from employee where department IN ('ece','mec',cse');
+select * from employee where NAME like 'a%'; (starting with a)
+select * from employee where NAME like '%am'; (ending with am)
+select * from employee where NAME like '%am%'; (having am)
+select * from employee where NAME like '_i%'; (second alphabet)
+select * from employee where NAME like 'i_%'; (second last alphabet)
+select * from employee where eid >=2 or salary < 12000;
+select * from employee where eid >=2 and salary in (10000,12000);
+select * from employee order by salary;
+select * from employee order by salary desc;
+select * from employee where eid>=5 or salary = 10000 and department in ('cse','mec') ;
+
+// TCL (Transaction Control Language)
+> commit => permanent change
+> savepoint => a breakpoint
+> rollback => moving to some particular breakpoint, if breakpoint name is not mentioned rollback will occur to initial state
+
+// DCL
+> Grant => giving permission
+> Revoke => taking permission
