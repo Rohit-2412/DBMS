@@ -215,10 +215,10 @@ INSERT INTO employee values (3,'mohan',15000,'ece');
 INSERT INTO employee values (4,'abc',12000,'che');
 INSERT INTO employee values (5,'xyz',8000,'phy');
 INSERT INTO employee values (6,'anuj',100000,'cse');
-INSERT INTO employee values (7,'anuj',100000,'cse');
-INSERT INTO employee values (8,'anuj',100000,'cse');
-INSERT INTO employee values (9,'anuj',100000,'cse');
-INSERT INTO employee values (10,'anuj',100000,'cse');
+INSERT INTO employee values (7,'aman',15000,'che');
+INSERT INTO employee values (8,'raman',10000,'cse');
+INSERT INTO employee values (9,'sahil',90000,'mth');
+INSERT INTO employee values (10,'sahas',120000,'cse');
 
 // to perform operation on table
 select salary*2 from employee;
@@ -235,7 +235,7 @@ SELECT col_name || 'string' || col_name AS OUTPUT from employee;
 select (salary+500)*3 from employee where department = 'cse' AND name='ram';
 select (salary+500)*3 from employee where department = 'cse' OR name='ram';
 
-SELECT distinct departmetn from employee;
+SELECT distinct department from employee;
 
 // AS command
 SELECT eid, name, department as "Details" from employee;
@@ -268,3 +268,86 @@ select * from employee where eid>=5 or salary = 10000 and department in ('cse','
 // DCL
 > Grant => giving permission
 > Revoke => taking permission
+
+TODO:
+Aggregate function
+having CLAUSE
+group by
+
+// Aggregate function
+sum, min, max, average => works on integer only
+count can work on any data type
+select min(salary) from Employee;
+select max(salary) from Employee;
+select avg(salary) from Employee;
+select sum(salary) from Employee;
+select count (eid) from Employee;
+select count (distinct eid) from Employee;
+
+select * from Employee;
+
+INSERT INTO employee values (11,'rohan',50000,'cse');
+INSERT INTO employee values (12,'sohan',60000,'ece');
+
+select min(salary) from Employee;
+select max(salary) from Employee;
+select sum(salary) from Employee;
+select avg(salary) from Employee;
+select count (eid) from Employee;
+
+select count(distinct department ) from Employee;
+select count (salary) from Employee where department <> 'cse';
+select count (salary) from Employee where eid >=5 and salary>=1000;
+select * from Employee where salary between 40000 and 60000;
+select * from Employee where salary = 40000 or eid = 2 and eid = 4;
+
+// 3 types of ~ / not operator
+select * from Employee where salary NOT in (60000);
+select * from Employee where salary <> 60000;
+select * from Employee where not salary = 60000;
+
+>> update salary to 50000 where deptid = 1
+
+update Employee set salary = 50000 where eid = 1;
+select * from Employee where eid = 1;
+
+// SET operations 
+UNION 
+UNION ALL 
+INTERSECT
+MINUS
+same number of cols, same data_type, similar columns
+at least 2 tables
+
+CREATE TABLE first(
+id int ,
+name varchar(20)
+);
+
+insert into first values(1,'amit');
+insert into first values(2,'aman');
+insert into first values(3,'arun');
+
+CREATE TABLE second(
+id int ,
+name varchar(20)
+);
+
+insert into second values(4,'namit');
+insert into second values(5,'sumit');
+insert into second values(6,'suman');
+
+select * from first union select * from second; // will eliminate duplicate 
+select * from first union all select * from second; // will not eliminate duplicates
+
+select * from first INTERSECTION select * from second; // common part
+select * from first MINUS select * from second; // not of common part / other than common data
+
+>> find avg salary where emp name starting with `a`
+
+// to create a view
+CREATE OR REPLACE view v1 as select name,salary,eid from Employee where id=3;
+select * from v1;
+
+update v1 set salary = 25000 where eid = 3;
+drop view view_name;

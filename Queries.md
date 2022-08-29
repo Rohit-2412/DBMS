@@ -183,6 +183,9 @@ SELECT [f(col_name, arithmetic_operation)] from table_name;
 
 ```
 SELECT col_name || 'string' || col_name from table_name WHERE condition1 OR condition2;
+```
+
+```
 SELECT col_name || col_name from table_name WHERE condition1 AND condition2;
 ```
 
@@ -196,6 +199,9 @@ SELECT DISTINCT col_name from table_name;
 
 ```
 SELECT col_name AS "{string1 string2}" FROM table_name;
+```
+
+```
 SELECT col_name AS {string} FROM table_name; // if SINGLE WORD is there "" can be ommitted
 ```
 
@@ -295,4 +301,127 @@ SELECT * FROM table_name ORDER BY col_name ASC;
 
 ```
 SELECT * FROM table_name ORDER BY col_name DESC;
+```
+
+## Aggregate Function
+
+-   SUM
+-   MIN
+-   MAX
+-   COUNT
+-   AVG
+
+### MIN
+
+> To calculate the minimum value out of all data
+
+```
+SELECT MIN(col_name) from table_name;
+```
+
+### MAX
+
+> To calculate the maximum value out of all data
+
+```
+SELECT MAX(col_name) from table_name;
+```
+
+### AVG
+
+> To calculate the average value of all data
+
+```
+SELECT AVG(col_name) from table_name;
+```
+
+### SUM
+
+> To calculate the sum out of all the data
+
+```
+SELECT SUM(col_name) from table_name;
+```
+
+### COUNT
+
+> To calculate the count of all the rows
+
+```
+SELECT COUNT(col_name) from table_name;
+```
+
+> To calculate the unique count from all of the rows
+
+```
+SELECT COUNT(DISTINCT col_name) from table_name;
+```
+
+## SET Operations
+
+-   UNION
+-   UNION ALL
+-   INTERSECTION
+-   MINUS
+
+## UNION
+
+> Will combine both the tables and duplicates will be eliminated
+
+**Syntax :**
+
+```
+SELECT * FROM table1 UNION SELECT * FROM table2;
+```
+
+## UNION ALL
+
+> Will combine both the tables and duplicates will not be eliminated
+
+**Syntax :**
+
+```
+SELECT * FROM table1 UNION ALL SELECT * FROM table2;
+```
+
+## INTERSECT
+
+> Will find the common data between both the tables
+
+**Syntax :**
+
+```
+SELECT * FROM table1 INTERSECT SELECT * FROM table2;
+```
+
+## MINUS
+
+> Will exclude the common data between both the tables
+
+**Syntax :**
+
+```
+SELECT * FROM table1 MINUS SELECT * FROM table2;
+```
+
+## VIEW
+
+> To create a view from a large database / table -> like a sub table
+
+**Syntax :**
+
+```
+CREATE OR REPLACE VIEW view_name AS SELECT col_name1,col_name2,col_name3 FROM Employee WHERE col_name = 'value';
+```
+
+> For Updation in View
+
+```
+UPDATE view_name SET col_name = 'value' WHERE col_name = 'value';
+```
+
+> For dropping view
+
+```
+DROP VIEW view_name;
 ```
