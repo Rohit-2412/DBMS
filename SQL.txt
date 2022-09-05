@@ -439,3 +439,29 @@ select * from class1 full outer join class2 on class1.id = class2.id;
 split phase
 apply phase
 combiner phase
+
+group by follows where clause
+group by preceeds order by
+one column is for grouping & another column for Aggregate function
+
+// having clause
+to apply condition 
+works on group of data
+
+// Queries
+
+create table Emp(
+    fname varchar(20),
+    lname varchar(20),
+    salary int,
+    empid int,
+    jobid int,
+    deptname varchar(20),
+    location varchar(20)
+);
+
+insert into emp values('ram','sharma',23000,23,56,'cse','pnb');
+insert into emp values('sram','arma',26000,25,56,'cse','delhi');
+insert into emp values('sham','rma',15000,28,58,'civil','haryana');
+insert into emp values('naitik','lang',45000,29,59,'mech','jalandhar');
+insert into emp values('ahem','sharma',10000,30,58,'civil','up');
