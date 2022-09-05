@@ -1,5 +1,7 @@
 # FOREIGN KEY Constraint
 
+---
+
 ## Person Table
 
     CREATE TABLE Person(
@@ -41,10 +43,10 @@
 
     select * from Order1;
 
-### - Base table = Parent table
+-   ### Base table = Parent table
 
-### - Reference table = child table
+-   ### Reference table = Child table
 
--   ## _Deletion_ is not allowed in Base table
+-   ### _Deletion_ is not allowed in Base table
 
--   ## _Insertion_ of values which are not present in Base table is not allowed
+-   ### _Insertion_ of values which are not present in Base table is not allowed

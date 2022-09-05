@@ -465,3 +465,22 @@ insert into emp values('sram','arma',26000,25,56,'cse','delhi');
 insert into emp values('sham','rma',15000,28,58,'civil','haryana');
 insert into emp values('naitik','lang',45000,29,59,'mech','jalandhar');
 insert into emp values('ahem','sharma',10000,30,58,'civil','up');
+
+select deptname , avg(salary) from emp group by deptname having avg(salary) >15000;
+select deptname , avg(salary) from emp group by jobid having min(salary) >15000;
+select jobid, min(salary) from emp group by jobid;
+select jobid, min(salary) from emp group by jobid having min(salary) >10000;
+select jobid, min(salary) from emp group by jobid having min(salary) >10000 order by jobid;
+// order by follows by group by we can't use order by prior to group by
+
+// sub queries
+select deptname, avg(salary) from emp group by deptname having avg(salary) = (select min(avg(salary)) from emp group by deptname);
+select deptname, min(avg(salary)) from emp group by deptname;
+
+59	45000
+56	24500
+select jobid ,min(salary) from emp group by jobid having min(salary) > (select min(salary) from emp where jobid=58);
+select fname,lname,empid from emp where jobid = (select jobid from emp where empid=25);
+select fname, lname , salary from emp where salary > (select salary from emp where fname='SRam');
+select fname, lname , salary,deptname from emp where salary in (
+select fname,lname,salary,deptname from emp group by deptname);
