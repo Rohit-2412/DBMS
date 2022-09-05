@@ -10,6 +10,8 @@
 
 ## **CREATE {DDL = Data Definition Language}**
 
+> To create a table
+
 **Syntax :**
 
 ```
@@ -24,7 +26,7 @@
 
 ## **INSERT {DDL = Data Definition Language}**
 
-> to insert data into table
+> To insert data into table
 
 **Syntax :**
 
@@ -36,11 +38,13 @@ INSERT INTO table_name values (value1, value2, value3,value4,...);
 
 **Syntax :**
 
-> To view all the column of the table and it's entries
+> To view all the columns of the table and it's entries
 
 ```
 SELECT * FROM table_name;
 ```
+
+**Syntax :**
 
 > To view data of a particular row
 
@@ -59,8 +63,8 @@ SELECT * FROM table_name WHERE col_name = 'value' (CLAUSE)
 ## **DESC {DDL = Data Definition Language}**
 
 > To view the col_name and its properties known as SCHEMA
->
-> **Syntax :**
+
+**Syntax :**
 
 ```
 desc table_name;
@@ -69,8 +73,8 @@ desc table_name;
 ## **DELETE {DML = Data Manipulation Language}**
 
 > To delete a row from the table
->
-> **Syntax :**
+
+**Syntax :**
 
 ```
 DELETE from table_name WHERE col_name = {value}
@@ -79,7 +83,8 @@ DELETE from table_name WHERE col_name = {value}
 ## **DROP {DDL = Data Definition Language}**
 
 > To drop the table / delete everything
-> **Syntax :**
+
+**Syntax :**
 
 ```
 DROP TABLE table_name;
@@ -167,10 +172,6 @@ TRUNCATE TABLE table_name;
 
 > `DROP deletes the whole table including the SCHEMA`
 
-## UPDATE {DML = Data Definition Language}
-
-> To update the existing rows
-
 ## To perfrom Arithmetic Operations on Table
 
 ```
@@ -206,6 +207,8 @@ SELECT col_name AS {string} FROM table_name; // if SINGLE WORD is there "" can b
 ```
 
 ## UPDATE {DDL = Data Definition Language}
+
+> To update the existing row's values
 
 **Syntax :**
 
@@ -247,7 +250,7 @@ SELECT * FROM table_name WHERE col_name IN (value1, value2, value3);
     SELECT * FROM table_name WHERE col_name LIKE '%{char}';
     ```
 
-    -   **conaining `char`**
+    -   **containing `char`**
 
     ```
     SELECT * FROM table_name WHERE col_name LIKE '%{char}%';
@@ -366,7 +369,7 @@ SELECT COUNT(DISTINCT col_name) from table_name;
 
 ## UNION
 
-> Will combine both the tables and duplicates will be eliminated
+> It will combine both the tables and duplicates will be eliminated
 
 **Syntax :**
 
@@ -376,7 +379,7 @@ SELECT * FROM table1 UNION SELECT * FROM table2;
 
 ## UNION ALL
 
-> Will combine both the tables and duplicates will not be eliminated
+> It will combine both the tables and duplicates will not be eliminated
 
 **Syntax :**
 
@@ -386,7 +389,7 @@ SELECT * FROM table1 UNION ALL SELECT * FROM table2;
 
 ## INTERSECT
 
-> Will find the common data between both the tables
+> It will find the common data between both the tables
 
 **Syntax :**
 
@@ -396,7 +399,7 @@ SELECT * FROM table1 INTERSECT SELECT * FROM table2;
 
 ## MINUS
 
-> Will exclude the common data between both the tables
+> It will exclude the common data between both the tables
 
 **Syntax :**
 
@@ -424,4 +427,69 @@ UPDATE view_name SET col_name = 'value' WHERE col_name = 'value';
 
 ```
 DROP VIEW view_name;
+```
+
+| ID  |  Name   | Class | Marks | Attendance |  Address  |
+| :-: | :-----: | :---: | :---: | :--------: | :-------: |
+|  1  | Harshit |   9   |  86   |    52%     | Jalandhar |
+|  2  |  Param  |  11   |  85   |    85%     | Mussorrie |
+|  3  |  Harsh  |  10   |  88   |    42%     | Ludhiana  |
+|  4  | Ramesh  |  10   |  27   |    82%     |  Roorkee  |
+|  5  |   Ram   |  11   |  95   |    95%     |  Mysore   |
+
+> If we want to work upon only those values where Attendance is less than 70 meeet after 5pm.
+
+## JOINS
+
+> TO join two tables
+> Number of rows should be same
+> Data type should also be same
+
+**Types -**
+
+#### Table 1
+
+| ID  |  Name   | Class |
+| :-: | :-----: | :---: |
+|  1  | Harshit |   9   |
+|  2  |  Param  |  11   |
+|  3  |  Parth  |  10   |
+
+#### Table 2
+
+| ID  |  Marks  |
+| :-: | :-----: |
+|  1  | Harshit |
+|  2  |  Param  |
+|  3  |  Parth  |
+
+**1. CARTESIAN / CROSS Join**
+
+    > Joins each column of table2 with table1
+    > Like Matrix multiplication
+
+**Syntax :**
+
+```
+SELECT * FROM table_name1 CROSS JOIN table_name2;
+```
+
+2. INNER / EQUI Join
+
+    > Joins each column of table2 with table1 wherever
+
+**Syntax :**
+
+```
+SELECT * FROM table_name1 INNER JOIN table_name2 ON table_name1.col_name1 = table_name2.col_name2;
+SELECT * FROM table_name1 INNER JOIN table_name2 ON {Condition};
+```
+
+1. LEFT OUTER JOIN
+
+**Syntax :**
+
+```
+SELECT * FROM table_name1 INNER JOIN table_name2 ON table_name1.col_name1 = table_name2.col_name2;
+SELECT * FROM table_name1 INNER JOIN table_name2 ON {Condition};
 ```

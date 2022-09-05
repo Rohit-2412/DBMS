@@ -351,3 +351,91 @@ select * from v1;
 
 update v1 set salary = 25000 where eid = 3;
 drop view view_name;
+
+// joins=> to join two tables
+data type need to be same as well as number of rows also
+type->
+CARTESIAN / cross join
+inner / equi join
+natural outer
+left  outer
+right full outer
+
+create table class1(
+    int id,
+    name varchar(20)
+);
+insert into table1 values(1,'ankit')
+insert into table1 values(2,'ankita')
+insert into table1 values(3,'anu')
+
+create table class2(
+id int,
+address varchar2(20)
+);
+
+insert into class2 values(1,'delhi')
+insert into class2 values(2,'agra')
+insert into class2 values(3,'jalandhar')
+
+cross join
+select * from class1 cross join class2;
+// matches each col of first table with each col of second table
+
+inner/equi join 
+// matches only the rows with equal values with a condition row with same values displayed twice
+select * from class1 inner join class2 on class2.id = class1.id;
+
+select * from class1 inner join class2 on class2.id = class1.id;
+
+natural join
+// works same as equi join w/o any condition given by user
+// no duplicates
+select * from class1 natural join class2;
+
+left outer join
+select * from class1 left outer join class2 on class1.id = class2.id;
+// all the left rows should be displayed
+null for non matching rows
+
+right outer join
+select * from class1 right outer join class2 on class1.id = class2.id;
+// all the right rows should be displayed
+null for non matching rows
+
+full outer join
+// both the rows will be displayed 
+
+
+create table class1(
+   id int ,
+    name varchar(20)
+);
+insert into class1 values(1,'ankit')
+insert into class1 values(2,'ankita')
+insert into class1 values(3,'anu')
+insert into class1 values(4,'anusha')
+
+create table class2(
+id int,
+address varchar2(20)
+);
+
+insert into class2 values(1,'delhi')
+insert into class2 values(2,'agra')
+insert into class2 values(3,'jalandhar')
+
+select * from class1;
+select * from class2;
+
+select * from class1 cross join class2;
+select * from class1 inner join class2 on class2.id = class1.id;
+select * from class1 natural join class2;
+select * from class1 left outer join class2 on class1.id = class2.id;
+select * from class1 right outer join class2 on class1.id = class2.id;
+select * from class1 full outer join class2 on class1.id = class2.id;
+
+// group by clause
+split phase
+apply phase
+combiner phase
