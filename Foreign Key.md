@@ -26,9 +26,11 @@
     FOREIGN KEY (P_id) REFERENCES Person(P_id)
     );
 
-> FOREIGN KEY col_name {in Child table} REFERENCES table_name(in Parent Table) [syntax]
+```
+FOREIGN KEY col_name {in Child table} REFERENCES table_name(in Parent Table) [syntax]
+```
 
-    FOREIGN KEY (P_id) REFERENCES Person(P_id)
+FOREIGN KEY (P_id) REFERENCES Person(P_id)
 
 ## Query
 

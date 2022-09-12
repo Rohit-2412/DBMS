@@ -484,3 +484,48 @@ select fname,lname,empid from emp where jobid = (select jobid from emp where emp
 select fname, lname , salary from emp where salary > (select salary from emp where fname='SRam');
 select fname, lname , salary,deptname from emp where salary in (
 select fname,lname,salary,deptname from emp group by deptname);
+
+// More logical operators
+ALL
+any
+is null
+EXISTS
+
+// any works like multiple or conditions
+select * from emp where salary = any(select salary from emp where salary >15000);
+
+// all is like multiple AND conditions
+select deptname from emp where jobid = all(select jobid from emp where jobid = 56);
+
+// exists if any value is present from our list then display 
+select salary from emp where exists (select salary from emp);
+
+// check for null value
+select * from emp where salary is not null;
+
+// it requires a condition which needs to be true and should return only one value
+select deptname from emp where deptname = all (select deptname from emp where jobid=56);
+
+// 12 September
+CREATE TABLE table1(id int primary key, name varchar(20), class int);
+insert into table1 values(1,'ankit',12);
+insert into table1 values(2,'anuj',11);
+insert into table1 values(3,'anu',12);
+
+CREATE TABLE table2(id int primary key, name varchar(20), class int);
+insert into table1 values(1,'ankit',12);
+insert into table1 values(2,'anuj',11);
+insert into table1 values(4,'anu',12);
+
+select * from table1 cross join table2;
+
+select * from table1 inner join table2 on table1.id = table2.id;
+
+select * from table1 natural join table2;
+
+select * from table1 left join table2 on table1.id = table2.id;
+select * from table2 left join table1 on table1.id = table2.id;
+
+
+select * from table1 right join table2 on table1.id = table2.id;
+select * from table2 right join table1 on table1.id = table2.id;
