@@ -529,3 +529,180 @@ select * from table2 left join table1 on table1.id = table2.id;
 
 select * from table1 right join table2 on table1.id = table2.id;
 select * from table2 right join table1 on table1.id = table2.id;
+select * from table1 full join table2 on table1.id = table2.id;
+
+-- Set Operations
+select * from table1 union select * from table2;
+select * from table1 union all select * from table2;
+select * from table1 intersect select * from table2;
+select * from table1 minus select * from table2;
+
+// Loosy decomposition
+
+create table r1 (
+model_name varchar(20),
+category varchar(20)
+);
+
+insert into r1 values('a11','cannon')
+insert into r1 values('a20','nikon')
+insert into r1 values('a70','cannon')
+
+create table r2 (
+price int,
+category varchar(20)
+);
+
+truncate table r2;
+insert into r2 values(100,'cannon')
+insert into r2 values(200,'nikon')
+insert into r2 values(150,'cannon')
+select * from r2;
+select * from r1;
+select * from r1 natural join r2;
+
+// Loseless decomposition
+create table p1(
+    agent varchar(20),
+    company varchar(20)
+);
+insert into p1 values('suneet','abc');
+insert into p1 values('suneet','cdf');
+insert into p1 values('raj','abc');
+
+create table p2(
+    agent varchar(20),
+    p_name varchar(20)
+);
+
+insert into p2 values('suneet','nut')
+insert into p2 values('suneet','bolt')
+insert into p2 values('raj','bolt')
+insert into p2 values('raj','nut')
+
+create table p3(
+    company varchar(20),
+    p_name varchar(20)
+);
+insert into p3 values('abc','nut')
+insert into p3 values('abc','bolt')
+insert into p3 values('cde','bolt')
+
+select * from p1 natural join (p2 natural join p3)
+
+Output::
+AGENT	COMPANY	P_NAME
+suneet	abc	nut
+raj	abc	nut
+raj	abc	bolt
+suneet	abc	bolt
+suneet	cde	bolt
+
+create table p1(
+    agent varchar(20),
+    company varchar(20)
+);
+truncate table p1;
+select * from p1
+insert into p1 values('suneet','abc');
+insert into p1 values('suneet','cde');
+insert into p1 values('raj','abc');
+
+create table p2(
+    agent varchar(20),
+    p_name varchar(20)
+);
+select *from p2;
+insert into p2 values('suneet','nut')
+insert into p2 values('suneet','bolt')
+insert into p2 values('raj','bolt')
+insert into p2 values('raj','nut')
+
+create table p3(
+    company varchar(20),
+    p_name varchar(20)
+);
+insert into p3 values('abc','nut')
+insert into p3 values('abc','bolt')
+insert into p3 values('cde','bolt')
+
+select * from p1 natural join (p2 natural join p3)
+
+
+
+create table s1(
+sid int,
+sname varchar(20),
+rating int,
+age int
+);
+
+truncate table s1;
+insert into s1 values(22,'dustin',7,45);
+insert into s1 values(31,'lubber',8,55);
+insert into s1 values(58,'rusty',10,35);
+
+
+create table s2(
+sid int,
+sname varchar(20),
+rating int,
+age int
+);
+
+insert into s2 values(31,'lubber',8,55);
+insert into s2 values(58,'rusty',10,35);
+insert into s2 values(28,'yuppy',9,35);
+insert into s2 values(44,'guppy',5,35);
+
+select * from s2;
+select distinct age from s2;
+
+select * from s1 
+intersect
+select * from s2;
+
+select * from s1 
+minus
+select * from s2;
+
+select * from s1 
+union
+select * from s2;
+
+select * from s1;
+select * from s2;
+select * from s1 cross join s2;
+select * from s1 inner join s2 on s1.sid=s2.sid;
+select * from s1 natural join s2;
+select * from s1 left join s2 on s1.sid = s2.sid;
+select * from s1 right join s2 on s1.sid = s2.sid;
+select * from s1 full join s2 on s1.sid = s2.sid;
+
+create table emp43(
+    id int,
+    name varchar(20),
+    age int,
+    address varchar(20),
+    salary int
+);
+
+insert into emp43 values(1,'amit',29,'delhi',6875);
+insert into emp43 values(2,'sumit',25,'mumbai',40000);
+insert into emp43 values(3,'rohit',34,'hyderabad',8125);
+// wherever age < 30 dec salary by 1500
+update emp43 set salary = salary - 1500 where age in (select age from emp43 where age < 30)
+update emp43 set salary = salary - 1500 where age < 30 \\ without subquery
+
+
+create table emp43_new(
+    id int,
+    name varchar(20),
+    age int,
+    address varchar(20),
+    salary int
+);
+
+insert into emp43_new (select * from emp43)
+insert into emp43_new ((2,'sumit',25,'mumbai',40000),
+(3,'rohit',34,'hyderabad',8125))
